@@ -1,7 +1,13 @@
 import https from "https";
 import { getKeyValue } from "./storage.service.js";
-import { BASE_URL, MESSAGES_ERRORS, SETTINGS_DICTIONARY } from "./const.js";
+import { BASE_URL, MESSAGES_ERRORS, SETTINGS_DICTIONARY, WEATHER_ICONS } from "./const.js";
 import axios from "axios";
+
+const getIcon = (iconName) => {
+  const key = iconName.slice(0, -1);
+  const icon = WEATHER_ICONS[key];
+  return icon;
+}
 
 const getToken = async () => {
   const token = await getKeyValue(SETTINGS_DICTIONARY.token);
@@ -60,4 +66,4 @@ const getWeather = async (city) => {
   return data;
 };
 
-export { getWeather };
+export { getWeather, getIcon };
